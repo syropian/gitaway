@@ -11,6 +11,9 @@
 |
  */
 
+Route::get('auth', 'AuthController@redirectToProvider');
+Route::get('auth/callback', 'AuthController@handleProviderCallback');
+
 Route::get('/{vue_capture?}', function () {
     return view('index');
 })->where('vue_capture', '[\/\w\.-]*');

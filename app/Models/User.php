@@ -35,4 +35,16 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function mapGitHubUser($githubUser)
+    {
+        $this->username = $githubUser->getNickname();
+        $this->github_id = $githubUser->getId();
+        if ($githubUser->getName()) {
+            $this->name = $githubUser->getName();
+        }
+        $this->avatar_url = $githubUser->getAvatar();
+        $this->access_token = $githubUser->token;
+        $this->save();
+    }
 }

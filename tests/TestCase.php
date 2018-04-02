@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function login(User $user = null)
     {
-        $user = $user ? : create('Astral\Models\User');
+        $user = $user ? : create('App\Models\User');
         $token = JWTAuth::fromUser($user);
         JWTAuth::setToken($token);
         $this->headers['Authorization'] = 'Bearer ' . $token;
