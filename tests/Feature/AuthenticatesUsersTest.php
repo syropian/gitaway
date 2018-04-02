@@ -36,7 +36,7 @@ class AuthenticatesUsersTest extends TestCase
         $expiry = auth()->factory()->getTTL() * 60;
         $githubUser = Socialite::driver('github')->user();
         $this->assertEquals($githubUser->getNickname(), $user->username);
-        $response->assertRedirect("/auth?token={$token}&token_expiry={$expiry}");
+        $response->assertRedirect("/?token={$token}&token_expiry={$expiry}");
     }
 
     /** @test */

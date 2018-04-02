@@ -17,13 +17,15 @@ class AuthController extends Controller
 
     public function redirectToProvider()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')
+            ->setScopes(['read:user', 'write:repo_hook'])
+            ->redirect();
     }
 
     public function handleProviderCallback(Request $request)
     {
         if (isset($request['error'])) {
-            return redirect('/auth?error=true');
+            return redirect('/?authError=true');
         }
         $githubUser = Socialite::driver('github')->user();
         $id = $githubUser->getId();
@@ -35,7 +37,7 @@ class AuthController extends Controller
         $user->mapGitHubUser($githubUser);
         $jwt = JWTAuth::fromUser($user);
         $jwtExpiry = $this->guard()->factory()->getTTL() * 60;
-        return redirect('/auth?token=' . $jwt . '&token_expiry=' . $jwtExpiry);
+        return redirect('/?token=' . $jwt . '&token_expiry=' . $jwtExpiry);
     }
 
     public function me(Request $request)

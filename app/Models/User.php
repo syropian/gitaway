@@ -36,6 +36,11 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    public function responders()
+    {
+        return $this->hasMany(Responder::class);
+    }
+
     public function mapGitHubUser($githubUser)
     {
         $this->username = $githubUser->getNickname();

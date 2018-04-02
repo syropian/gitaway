@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::get('auth/me', 'AuthController@me');
 Route::get('auth/refresh', 'AuthController@refresh');
 Route::get('auth/logout', 'AuthController@logout');
+
+Route::post('responders', 'ResponderController@store');
