@@ -1,20 +1,25 @@
-import { Promise } from 'es6-promise'
-import ls from 'local-storage'
-import { SET_USER } from '@/store/mutation-types'
-import client from '@/store/client'
+import { Promise } from "es6-promise"
+import ls from "local-storage"
+import { SET_USER } from "@/store/mutation-types"
+import client from "@/store/client"
 
 const state = {
-  user: {}
+  user: {},
+  repos: []
 }
 
 const getters = {
   user: state => state.user,
-  isAuthenticated: state => !!ls('jwt')
+  repos: state => state.repos,
+  isAuthenticated: state => !!ls("jwt")
 }
 
 const mutations = {
   [SET_USER](state, user) {
     state.user = user
+  },
+  [SET_REPOS](state, repos) {
+    state.repos = repos
   }
 }
 
@@ -22,7 +27,7 @@ const actions = {
   fetchUser({ commit }) {
     return client
       .withAuth()
-      .get('/api/auth/me')
+      .get("/api/auth/me")
       .then(res => {
         commit(SET_USER, res)
       })

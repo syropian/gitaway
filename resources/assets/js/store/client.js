@@ -1,11 +1,11 @@
-import { Promise } from 'es6-promise'
-import axios from 'axios'
-import ls from 'local-storage'
-import router from '@/router'
+import { Promise } from "es6-promise"
+import axios from "axios"
+import ls from "local-storage"
+import router from "@/router"
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
 
-const verbs = ['get', 'post', 'put', 'patch', 'delete']
+const verbs = ["get", "post", "put", "patch", "delete"]
 
 const client = {
   auth: false,
@@ -27,13 +27,7 @@ verbs.forEach(verb => {
         url,
         data,
         headers:
-          client.auth && ls('jwt')
-            ? Object.assign(
-                {},
-                { Authorization: `Bearer ${ls('jwt')}` },
-                headers
-              )
-            : headers
+          client.auth && ls("jwt") ? Object.assign({}, { Authorization: `Bearer ${ls("jwt")}` }, headers) : headers
       })
         .then(res => {
           client.auth = false
@@ -42,7 +36,7 @@ verbs.forEach(verb => {
         .catch(error => {
           client.auth = false
           if (error.response.status === 401) {
-            router.push('auth/logout')
+            router.push("logout")
           }
           reject(error.response.data)
         })
