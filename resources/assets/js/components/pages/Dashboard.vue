@@ -1,12 +1,18 @@
 <template>
-  <h1>Henlo {{ user.username }}</h1>
+  <div class="dashboard">
+    <navbar></navbar>
+    <responders-manager></responders-manager>
+  </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
+import Navbar from '@/components/Navbar'
+import RespondersManager from '@/components/RespondersManager'
 export default {
   name: 'Dashboard',
-  computed: {
-    ...mapGetters(['user'])
+  components: {
+    Navbar,
+    RespondersManager
   },
   methods: {
     ...mapActions(['fetchUser'])

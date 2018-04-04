@@ -26,8 +26,7 @@ verbs.forEach(verb => {
         method: verb,
         url,
         data,
-        headers:
-          client.auth && ls("jwt") ? Object.assign({}, { Authorization: `Bearer ${ls("jwt")}` }, headers) : headers
+        headers: client.auth && ls("jwt") ? { ...headers, Authorization: `Bearer ${ls("jwt")}` } : headers
       })
         .then(res => {
           client.auth = false

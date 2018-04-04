@@ -1,6 +1,6 @@
 import { Promise } from "es6-promise"
 import ls from "local-storage"
-import { SET_USER } from "@/store/mutation-types"
+import { SET_USER, SET_REPOS } from "@/store/mutation-types"
 import client from "@/store/client"
 
 const state = {

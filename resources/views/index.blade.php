@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Astral</title>
+	<title>Gitaway</title>
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet">
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>

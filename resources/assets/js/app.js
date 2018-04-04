@@ -1,11 +1,13 @@
-import Vue from 'vue'
-import App from './components/App'
-import router from './router'
-import store from './store'
+import Vue from "vue"
+import vmodal from "vue-js-modal"
+import App from "./components/App"
+import router from "./router"
+import store from "./store"
 
 Vue.config.productionTip = false
+Vue.use(vmodal)
 
-Object.defineProperty(Vue.prototype, '$bus', {
+Object.defineProperty(Vue.prototype, "$bus", {
   get() {
     return this.$root.bus
   }
@@ -15,7 +17,7 @@ Object.defineProperty(Vue.prototype, '$bus', {
 const bus = new Vue({})
 
 new Vue({
-  el: '#app',
+  el: "#app",
   data: {
     bus
   },
